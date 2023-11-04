@@ -257,16 +257,24 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, }, "j",
 		function()
-			awful.client.focus.byidx(1)
+			awful.client.focus.global_bydirection("down")
 		end,
-		{ description = "focus next by index", group = "client" }
+		{ description = "focus to the client below", group = "client" }
 	),
 	awful.key({ modkey, }, "k",
 		function()
-			awful.client.focus.byidx(-1)
+			awful.client.focus.global_bydirection("up")
 		end,
-		{ description = "focus previous by index", group = "client" }
+		{ description = "focus to the client above", group = "client" }
 	),
+	awful.key({ modkey, }, "l", function()
+			awful.client.focus.global_bydirection("right")
+		end,
+		{ description = "focus to the client at right", group = "client" }),
+	awful.key({ modkey, }, "h", function()
+			awful.client.focus.global_bydirection("left")
+		end,
+		{ description = "focus to the client at left", group = "client" }),
 	awful.key({ modkey, }, "Tab",
 		function()
 			awful.client.focus.history.previous()
@@ -298,10 +306,6 @@ awful.keyboard.append_global_keybindings({
 		{ description = "swap with previous client by index", group = "client" }),
 	awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
 		{ description = "jump to urgent client", group = "client" }),
-	awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
-		{ description = "increase master width factor", group = "layout" }),
-	awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
-		{ description = "decrease master width factor", group = "layout" }),
 	awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
 		{ description = "increase the number of master clients", group = "layout" }),
 	awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
