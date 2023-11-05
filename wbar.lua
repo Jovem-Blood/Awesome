@@ -2,13 +2,24 @@ local awful = require("awful")
 local wibox = require("wibox")
 local lain = require("lain")
 local theme = require("zenburn.theme")
+local gears = require("gears")
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
 
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-local mycal = lain.widget.cal {
+local commands_path = os.getenv("HOME") .. "/.config/awesome/commands"
+local colors = {
+	separator = "#b16286",
+	net_usage = "#b8bb26",
+	cpu = "#fb4934",
+	temperature = "#fabd2f",
+	memory = "#b8bb26",
+	clock = "#b8bb26",
+}
+
+local markup = lain.util.markup
+
+-- Create a text clock widget
+local mytextclock = wibox.widget.textclock(markup(colors.clock, "%d/%m/%Y - %T "), 1)
+lain.widget.cal {
 	attach_to = { mytextclock },
 	notification_preset = {
 		font = theme.font,
@@ -17,6 +28,51 @@ local mycal = lain.widget.cal {
 	}
 }
 
+local separator = wibox.widget.textbox(markup(colors.separator, "    "))
+
+-- Create a net_usage widget
+local net_usage_widget = wibox.widget.textbox()
+
+-- Create a CPU usage widget
+local cpu_widget = wibox.widget.textbox()
+
+-- Create a temperature widget
+local temp_widget = wibox.widget.textbox()
+
+-- Create a memory usage widget
+local mem_widget = wibox.widget.textbox()
+
+-- Update the net_usage widget
+local function update_net_usage_widget(widget)
+	awful.spawn.easy_async("nu", function(stdout, stderr, reason, exit_code)
+		widget:set_markup(markup(colors.net_usage, " " .. stdout))
+	end)
+end
+
+-- Update the CPU usage widget
+local function update_cpu_widget(widget)
+	awful.spawn.easy_async(commands_path .. "/cpu_usage", function(stdout, stderr, reason, exit_code)
+		widget:set_markup(markup(colors.cpu, " CPU " .. stdout))
+	end)
+end
+
+-- Update the temperature widget
+local function update_temp_widget(widget)
+	awful.spawn.easy_async(commands_path .. "/temperature", function(stdout, stderr, reason, exit_code)
+		widget:set_markup(markup(colors.temperature, " " .. stdout))
+	end)
+end
+
+-- Update the memory usage widget
+local function update_mem_widget(widget)
+	awful.spawn.easy_async(commands_path .. "/memory", function(stdout, stderr, reason, exit_code)
+		-- widget:set_text(markup(colors.memory, " F " .. stdout))
+		widget:set_markup(markup(colors.memory, " F " .. stdout))
+	end)
+end
+
+
+-- Create a textclock widget
 screen.connect_signal("request::desktop_decoration", function(s)
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", }, s, awful.layout.layouts[1])
@@ -88,13 +144,33 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{          -- Right widgets
 				layout = wibox.layout.fixed.horizontal,
 				-- mykeyboardlayout,
-				wibox.widget.systray(),
+				net_usage_widget,
+				separator,
+				cpu_widget,
+				separator,
+				temp_widget,
+				separator,
+				mem_widget,
+				separator,
 				mytextclock,
+				wibox.widget.systray(),
 				-- mycal,
 				s.mylayoutbox,
 			},
 		}
 	}
 end)
+
+gears.timer {
+	timeout = 10,
+	autostart = true,
+	call_now = true,
+	callback = function()
+		update_net_usage_widget(net_usage_widget)
+		update_cpu_widget(cpu_widget)
+		update_temp_widget(temp_widget)
+		update_mem_widget(mem_widget)
+	end,
+}
 
 -- }}}
