@@ -245,35 +245,10 @@ awful.keyboard.append_global_keybindings({
 			else
 				index = tostring(index)
 			end
-			-- if screen.selected_tag.index == index then return end
 
-			-- naughty.notification("d")
 			local tag = awful.tag.find_by_name(screen, index)
-			-- local tag = screen.tags[index]
-
-			-- for _, t in ipairs(screen.tags) do
-			-- 	local cs = t:clients()
-			-- 	if not cs or #cs == 0 then
-			-- 		t:delete()
-			-- 	end
-			-- end
-
 			if tag then
 				tag:view_only()
-				-- else
-				-- 	local iname = tostring(index)
-				-- 	if index == 0 then
-				-- 		iname = tostring(10)
-				-- 		index = tostring(10)
-				-- 	end
-				-- 	awful.tag.add(iname, {
-				-- 		screen = screen,
-				-- 		layout = awful.layout.layouts[1],
-				-- 		index = index,
-				-- 		-- volatile = true
-				-- 	}):view_only()
-				-- local ntag = awful.tag.new(iname, screen, awful.layout.layouts[1])
-				-- screen.tags[index] = ntag
 			end
 		end,
 	},
