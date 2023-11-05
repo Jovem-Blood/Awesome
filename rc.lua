@@ -131,10 +131,27 @@ awful.keyboard.append_global_keybindings({
 		{ description = "lua execute prompt", group = "awesome" }),
 	awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
 		{ description = "open a terminal", group = "launcher" }),
-	awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-		{ description = "run prompt", group = "launcher" }),
-	awful.key({ modkey }, "p", function() menubar.show() end,
-		{ description = "show the menubar", group = "launcher" }),
+	awful.key({ modkey }, "r", function()
+			awful.spawn(
+				"dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu:'")
+		end,
+		{ description = "run dmenu", group = "launcher" }),
+	awful.key({ modkey }, "d", function()
+			awful.spawn("rofi -show drun")
+		end,
+		{ description = "show rofi", group = "launcher" }),
+	awful.key({ modkey }, "q", function()
+			awful.spawn("firefox")
+		end,
+		{ description = "open firefox", group = "launcher" }),
+	awful.key({ modkey }, "v", function()
+			awful.spawn("copyq toggle")
+		end,
+		{ description = "open copyq", group = "launcher" }),
+	awful.key({}, "Print", function()
+			awful.spawn("flameshot gui")
+		end,
+		{ description = "open flameshot", group = "launcher" }),
 })
 
 -- Tags related keybindings
