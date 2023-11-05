@@ -414,11 +414,26 @@ ruled.client.connect_signal("request::rules", function()
 		properties = { titlebars_enabled = false }
 	}
 
-	-- Set Firefox to always map on the tag named "2" on screen 1.
-	-- ruled.client.append_rule {
-	--     rule       = { class = "Firefox"     },
-	--     properties = { screen = 1, tag = "2" }
-	-- }
+	ruled.client.append_rule {
+		rule       = { class = "copyq" },
+		properties = {
+			floating = true,
+			size_hints_honor = true,
+			placement = awful.placement.centered,
+			width = awful.screen.focused().workarea.width * 0.8,
+			height = awful.screen.focused().workarea.height * 0.8
+		}
+	}
+
+	ruled.client.append_rule {
+		rule       = { class = "firefox" },
+		properties = { screen = 1, tag = "1" }
+	}
+
+	ruled.client.append_rule {
+		rule       = { class = "Alacritty" },
+		properties = { screen = 1, tag = "2" }
+	}
 end)
 -- }}}
 
