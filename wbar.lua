@@ -1,11 +1,21 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local lain = require("lain")
+local theme = require("zenburn.theme")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+local mycal = lain.widget.cal {
+	attach_to = { mytextclock },
+	notification_preset = {
+		font = theme.font,
+		bg = theme.bg_normal,
+		fg = theme.fg_normal,
+	}
+}
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	-- Each screen has its own tag table.
@@ -77,9 +87,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			s.mytasklist, -- Middle widget
 			{          -- Right widgets
 				layout = wibox.layout.fixed.horizontal,
-				mykeyboardlayout,
+				-- mykeyboardlayout,
 				wibox.widget.systray(),
 				mytextclock,
+				-- mycal,
 				s.mylayoutbox,
 			},
 		}
