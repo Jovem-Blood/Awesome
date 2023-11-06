@@ -3,36 +3,37 @@
 --    By Adrian C. (anrxc)   --
 -------------------------------
 
-local themes_path = os.getenv("HOME") .. "/.config/awesome/"
-local rnotification = require("ruled.notification")
-local dpi = require("beautiful.xresources").apply_dpi
-local gears = require("gears")
-local mcolor = "#111115".."c6"
+local themes_path              = os.getenv("HOME") .. "/.config/awesome/"
+local rnotification            = require("ruled.notification")
+local dpi                      = require("beautiful.xresources").apply_dpi
+local gears                    = require("gears")
+local mcolor                   = "#111115" .. "c6"
 
 -- {{{ Main
-local theme = {}
-theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
+local theme                    = {}
+theme.wallpaper                = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "source code pro 8"
+theme.font                     = "source code pro 8"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
-theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = mcolor
-theme.bg_focus   = gears.color.transparent
-theme.bg_urgent  = mcolor
-theme.bg_systray = mcolor
+theme.fg_normal                = "#DCDCCC"
+theme.fg_focus                 = "#F0DFAF"
+theme.fg_urgent                = "#CC9393"
+theme.bg_normal                = mcolor
+theme.bg_focus                 = gears.color.transparent
+theme.bg_urgent                = mcolor
+theme.bg_systray               = mcolor
+theme.systray_icon_spacing     = dpi(3)
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(2)
-theme.border_color_normal = "#3F3F3F"
-theme.border_color_active = "#6F6F6F"
-theme.border_color_marked = "#CC9393"
+theme.useless_gap              = dpi(0)
+theme.border_width             = dpi(2)
+theme.border_color_normal      = "#3F3F3F"
+theme.border_color_active      = "#6F6F6F"
+theme.border_color_marked      = "#CC9393"
 -- }}}
 
 -- {{{ Titlebars
@@ -47,18 +48,18 @@ theme.border_color_marked = "#CC9393"
 -- titlebar_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
-theme.taglist_bg_focus = "#4010ff" .. "90"
+theme.taglist_bg_focus         = "#4010ff" .. "90"
 -- }}}
 
 -- {{{ Tasklist
 -- theme.tasklist_fg_normal  = "#fd2222"
--- theme.tasklist_fg_focus   = "#fd2222"
+theme.tasklist_fg_focus        = "#D3F26D"
 -- theme.tasklist_fg_urgent  = "#CC9393"
--- theme.tasklist_bg_normal  = gears.color.transparent
+theme.tasklist_bg_normal       = gears.color.transparent
 -- theme.tasklist_bg_focus   = gears.color.transparent
 -- theme.tasklist_bg_urgent  = gears.color.transparent
-theme.tasklist_disable_icon = true
-theme.tasklist_plain_task_name= true
+theme.tasklist_disable_icon    = true
+theme.tasklist_plain_task_name = true
 -- }}}
 
 -- {{{ Widgets
@@ -77,39 +78,39 @@ theme.tasklist_plain_task_name= true
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = dpi(15)
-theme.menu_width  = dpi(100)
+theme.menu_height              = dpi(15)
+theme.menu_width               = dpi(100)
 -- }}}
 
 -- {{{ Icons
 -- {{{ Taglist
-theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
-theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
+theme.taglist_squares_sel      = themes_path .. "zenburn/taglist/squarefz.png"
+theme.taglist_squares_unsel    = themes_path .. "zenburn/taglist/squarez.png"
 --theme.taglist_squares_resize = "false"
 -- }}}
 
 -- {{{ Misc
-theme.awesome_icon           = themes_path .. "zenburn/awesome-icon.png"
-theme.menu_submenu_icon      = themes_path .. "default/submenu.png"
+theme.awesome_icon             = themes_path .. "zenburn/awesome-icon.png"
+theme.menu_submenu_icon        = themes_path .. "default/submenu.png"
 -- }}}
 
 -- {{{ Layout
-theme.layout_tile       = themes_path .. "zenburn/layouts/tile.png"
-theme.layout_tileleft   = themes_path .. "zenburn/layouts/tileleft.png"
-theme.layout_tilebottom = themes_path .. "zenburn/layouts/tilebottom.png"
-theme.layout_tiletop    = themes_path .. "zenburn/layouts/tiletop.png"
-theme.layout_fairv      = themes_path .. "zenburn/layouts/fairv.png"
-theme.layout_fairh      = themes_path .. "zenburn/layouts/fairh.png"
-theme.layout_spiral     = themes_path .. "zenburn/layouts/spiral.png"
-theme.layout_dwindle    = themes_path .. "zenburn/layouts/dwindle.png"
-theme.layout_max        = themes_path .. "zenburn/layouts/max.png"
-theme.layout_fullscreen = themes_path .. "zenburn/layouts/fullscreen.png"
-theme.layout_magnifier  = themes_path .. "zenburn/layouts/magnifier.png"
-theme.layout_floating   = themes_path .. "zenburn/layouts/floating.png"
-theme.layout_cornernw   = themes_path .. "zenburn/layouts/cornernw.png"
-theme.layout_cornerne   = themes_path .. "zenburn/layouts/cornerne.png"
-theme.layout_cornersw   = themes_path .. "zenburn/layouts/cornersw.png"
-theme.layout_cornerse   = themes_path .. "zenburn/layouts/cornerse.png"
+theme.layout_tile              = themes_path .. "zenburn/layouts/tile.png"
+theme.layout_tileleft          = themes_path .. "zenburn/layouts/tileleft.png"
+theme.layout_tilebottom        = themes_path .. "zenburn/layouts/tilebottom.png"
+theme.layout_tiletop           = themes_path .. "zenburn/layouts/tiletop.png"
+theme.layout_fairv             = themes_path .. "zenburn/layouts/fairv.png"
+theme.layout_fairh             = themes_path .. "zenburn/layouts/fairh.png"
+theme.layout_spiral            = themes_path .. "zenburn/layouts/spiral.png"
+theme.layout_dwindle           = themes_path .. "zenburn/layouts/dwindle.png"
+theme.layout_max               = themes_path .. "zenburn/layouts/max.png"
+theme.layout_fullscreen        = themes_path .. "zenburn/layouts/fullscreen.png"
+theme.layout_magnifier         = themes_path .. "zenburn/layouts/magnifier.png"
+theme.layout_floating          = themes_path .. "zenburn/layouts/floating.png"
+theme.layout_cornernw          = themes_path .. "zenburn/layouts/cornernw.png"
+theme.layout_cornerne          = themes_path .. "zenburn/layouts/cornerne.png"
+theme.layout_cornersw          = themes_path .. "zenburn/layouts/cornersw.png"
+theme.layout_cornerse          = themes_path .. "zenburn/layouts/cornerse.png"
 -- }}}
 
 -- {{{ Titlebar
