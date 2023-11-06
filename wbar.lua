@@ -33,6 +33,33 @@ local separator = wibox.widget.textbox(markup(colors.separator, "    "))
 -- Create a net_usage widget
 local net_usage_widget = wibox.widget.textbox()
 
+local mp = wibox.widget.textbox()
+mp.forced_width = 150
+local function update_mp(widget)
+	awful.spawn.easy_async("playerctl -p mpv metadata -f '|{{artist}}| - {{xesam:title}}'",
+		function(stdout, stderr, reason, exit_code)
+			local n = require("naughty")
+			if stdout == "" then
+				widget:set_text()
+			else
+				-- widget:set_text(markup(colors.memory, " F " .. stdout))
+				local pattern = "|([^|]+)|"
+				local artist = string.match(stdout, pattern)
+				-- local str = "Alan Walker/K-391/Emelie Hollow"
+				local match = string.match(artist, "([^/]+)")
+				if match then
+					local replacement = match
+					local result = string.gsub(stdout, pattern, replacement)
+					widget:set_markup(markup(colors.memory, " F " .. result))
+				else
+					local replacement = artist
+					local result = string.gsub(stdout, pattern, replacement)
+					widget:set_markup(markup(colors.memory, " F " .. result))
+				end
+			end
+		end)
+end
+
 -- Create a CPU usage widget
 local cpu_widget = wibox.widget.textbox()
 
@@ -145,6 +172,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 				layout = wibox.layout.fixed.horizontal,
 				-- mykeyboardlayout,
 				wibox.widget.systray(),
+				-- mp,
 				net_usage_widget,
 				separator,
 				cpu_widget,
@@ -165,6 +193,7 @@ gears.timer {
 	autostart = true,
 	call_now = true,
 	callback = function()
+		-- update_mp(mp)
 		update_net_usage_widget(net_usage_widget)
 		update_cpu_widget(cpu_widget)
 		update_temp_widget(temp_widget)
