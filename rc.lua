@@ -404,7 +404,7 @@ ruled.client.connect_signal("request::rules", function()
 				"pop-up",    -- e.g. Google Chrome's (detached) Developer Tools.
 			}
 		},
-		properties = { floating = true }
+		properties = { floating = true, maximized = false }
 	}
 
 	-- Add titlebars to normal clients and dialogs
@@ -415,24 +415,14 @@ ruled.client.connect_signal("request::rules", function()
 	}
 
 	ruled.client.append_rule {
-		rule       = { class = "copyq" },
-		properties = {
-			floating = true,
-			size_hints_honor = true,
-			placement = awful.placement.centered,
-			width = awful.screen.focused().workarea.width * 0.8,
-			height = awful.screen.focused().workarea.height * 0.8
-		}
-	}
-
-	ruled.client.append_rule {
 		rule       = { class = "firefox" },
 		properties = { screen = 1, tag = "1" }
 	}
 
 	ruled.client.append_rule {
 		rule       = { class = "Alacritty" },
-		properties = { screen = 1, tag = "2" }
+		properties = { screen = 1, tag = "2" },
+		callback   = function(c) awful.tag.viewonly(c.first_tag) end
 	}
 end)
 -- }}}
