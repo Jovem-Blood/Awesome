@@ -71,7 +71,7 @@ local mem_widget = wibox.widget.textbox()
 
 -- Update the net_usage widget
 local function update_net_usage_widget(widget)
-	awful.spawn.easy_async("nu", function(stdout, stderr, reason, exit_code)
+	awful.spawn.easy_async(commands_path .. "/nu", function(stdout, stderr, reason, exit_code)
 		widget:set_markup(markup(colors.net_usage, " " .. stdout))
 	end)
 end
