@@ -158,6 +158,14 @@ awful.keyboard.append_global_keybindings({
 			awful.spawn("flameshot gui")
 		end,
 		{ description = "open flameshot", group = "launcher" }),
+	awful.key({modkey}, "p", function()
+			awful.spawn("pavucontrol")
+		end,
+		{ description = "open pavucontrol", group = "launcher" }),
+	awful.key({modkey}, "e", function()
+			awful.spawn("pcmanfm")
+		end,
+		{ description = "open pcmanfm", group = "launcher" }),
 })
 
 -- Tags related keybindings
@@ -394,7 +402,7 @@ ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule {
 		id         = "floating",
 		rule_any   = {
-			instance = { "copyq", "pinentry" },
+			instance = { "copyq", "pinentry", "pavucontrol"},
 			class    = {
 				"Arandr", "Blueman-manager", "Gpick", "Kruler", "Sxiv",
 				"Tor Browser", "Wpa_gui", "veromix", "xtightvncviewer"
