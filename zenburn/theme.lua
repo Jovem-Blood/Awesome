@@ -6,6 +6,8 @@
 local themes_path = os.getenv("HOME") .. "/.config/awesome/"
 local rnotification = require("ruled.notification")
 local dpi = require("beautiful.xresources").apply_dpi
+local gears = require("gears")
+local mcolor = "#111115".."c6"
 
 -- {{{ Main
 local theme = {}
@@ -19,10 +21,10 @@ theme.font      = "source code pro 8"
 theme.fg_normal  = "#DCDCCC"
 theme.fg_focus   = "#F0DFAF"
 theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
-theme.bg_urgent  = "#3F3F3F"
-theme.bg_systray = theme.bg_normal
+theme.bg_normal  = mcolor
+theme.bg_focus   = gears.color.transparent
+theme.bg_urgent  = mcolor
+theme.bg_systray = mcolor
 -- }}}
 
 -- {{{ Borders
@@ -45,18 +47,30 @@ theme.titlebar_bg_normal = "#3F3F3F"
 -- titlebar_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
---theme.taglist_bg_focus = "#CC9393"
+theme.taglist_bg_focus = "#4010ff" .. "90"
+-- }}}
+
+-- {{{ Tasklist
+-- theme.tasklist_fg_normal  = "#fd2222"
+-- theme.tasklist_fg_focus   = "#fd2222"
+-- theme.tasklist_fg_urgent  = "#CC9393"
+-- theme.tasklist_bg_normal  = gears.color.transparent
+-- theme.tasklist_bg_focus   = gears.color.transparent
+-- theme.tasklist_bg_urgent  = gears.color.transparent
+theme.tasklist_disable_icon = true
+theme.tasklist_plain_task_name= true
 -- }}}
 
 -- {{{ Widgets
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.fg_widget        = "#AECF96"
---theme.fg_center_widget = "#88A175"
---theme.fg_end_widget    = "#FF5656"
---theme.bg_widget        = "#494B4F"
---theme.border_widget    = "#3F3F3F"
+-- theme.fg_widget        = "#AECF96"
+-- theme.fg_center_widget = "#88A175"
+-- theme.fg_end_widget    = "#FF5656"
+-- theme.bg_widget        = "#494B4F"
+-- theme.bg_widget        = "#494B4F"
+-- theme.border_widget    = "#3F3F3F"
 -- }}}
 
 -- {{{ Menu
