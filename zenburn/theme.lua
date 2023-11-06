@@ -24,7 +24,7 @@ theme.fg_urgent                = "#CC9393"
 theme.bg_normal                = mcolor
 theme.bg_focus                 = gears.color.transparent
 theme.bg_urgent                = mcolor
-theme.bg_systray               = mcolor
+theme.bg_systray               = "#111115" .. "aa"
 theme.systray_icon_spacing     = dpi(3)
 -- }}}
 
@@ -48,7 +48,8 @@ theme.border_color_marked      = "#CC9393"
 -- titlebar_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
-theme.taglist_bg_focus         = "#4010ff" .. "90"
+-- theme.taglist_bg_focus         = "#4010ff" .. "90"
+theme.taglist_bg_focus         = "#C7758F"
 -- }}}
 
 -- {{{ Tasklist

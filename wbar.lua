@@ -71,7 +71,7 @@ local mem_widget = wibox.widget.textbox()
 
 -- Update the net_usage widget
 local function update_net_usage_widget(widget)
-	awful.spawn.easy_async("nu", function(stdout, stderr, reason, exit_code)
+	awful.spawn.easy_async(commands_path .. "/nu", function(stdout, stderr, reason, exit_code)
 		widget:set_markup(markup(colors.net_usage, " " .. stdout))
 	end)
 end
@@ -102,7 +102,7 @@ end
 -- Create a textclock widget
 screen.connect_signal("request::desktop_decoration", function(s)
 	-- Each screen has its own tag table.
-	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", }, s, awful.layout.layouts[1])
+	awful.tag({ "1", "2", "3", "4", "5","6", "7", "8", "9", "10", }, s, awful.layout.layouts[1])
 
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
@@ -189,7 +189,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 end)
 
 gears.timer {
-	timeout = 10,
+	timeout = 2,
 	autostart = true,
 	call_now = true,
 	callback = function()
