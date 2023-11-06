@@ -154,7 +154,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 				separator,
 				mytextclock,
 				wibox.widget.systray(),
-				-- mycal,
 				s.mylayoutbox,
 			},
 		}
