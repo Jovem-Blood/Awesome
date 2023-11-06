@@ -144,6 +144,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{          -- Right widgets
 				layout = wibox.layout.fixed.horizontal,
 				-- mykeyboardlayout,
+				wibox.widget.systray(),
 				net_usage_widget,
 				separator,
 				cpu_widget,
@@ -153,7 +154,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 				mem_widget,
 				separator,
 				mytextclock,
-				wibox.widget.systray(),
 				s.mylayoutbox,
 			},
 		}

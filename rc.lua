@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local wibox = require("wibox")
+local systray = wibox.widget.systray()
+systray.visible = false
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -129,6 +132,9 @@ awful.keyboard.append_global_keybindings({
 			}
 		end,
 		{ description = "lua execute prompt", group = "awesome" }),
+	awful.key({ modkey }, "-", function()
+		systray.visible = not systray.visible
+	end, { description = "Toggle systray visibility", group = "awesome" }),
 	awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
 		{ description = "open a terminal", group = "launcher" }),
 	awful.key({ modkey }, "r", function()
